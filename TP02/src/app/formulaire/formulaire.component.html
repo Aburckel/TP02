@@ -1,61 +1,77 @@
-<div class="row">
-    <div class="col s6 offset-s3">
-        <h2>Formulaire de création de compte</h2>
-    </div>
-    <form class="col s6 offset-s3" id="form">
-        <div class="input-field col s6">
-            <label>Nom</label>
-            <input type="text" name="nom" id="nom" required/>
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input required ngModel name="nom" #nom="ngModel" pattern="[a-zA-Z ]*" id="nom" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="nom.touched && !nom.valid">
+                <div *ngIf="nom.errors.required">Le nom doit être renseigné</div>
+                <div *ngIf="nom.errors.pattern">Ceci ne semble pas etre un nom</div>
+            </div>
         </div>
-        <div class="input-field col s6">
-            <label>Prenom</label>
-            <input type="text" name="prenom" id="prenom" required/>
+        <div class="form-group">
+            <label for="prenom">Prenom</label>
+            <input required ngModel name="prenom" #prenom="ngModel" pattern="[a-zA-Z ]*" id="prenom" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="prenom.touched && !prenom.valid">
+                <div *ngIf="prenom.errors.required">Le prenom doit être renseigné</div>
+                <div *ngIf="prenom.errors.pattern">Ceci ne semble pas etre un prenom</div>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <p> 
-                <label>
-                    <input class="with-gap" name="civ" type="radio" id="mr" checked />
-                    <span>Homme</span>
-                </label>
-            </p>
-            <p>
-                <label>
-                    <input class="with-gap" name="civ" type="radio" id="mrs" />
-                    <span>Femme</span>
-                </label>
-            </p>
+        <div class="form-goup">
+            <label for="adresse">Adresse</label>
+            <input required ngModel name="adresse" #adresse="ngModel" pattern="" type="text" id="adresse" class="form-control">
+            <div class="alert alert-danger" *ngIf="adresse.touched && !adresse.valid">
+                <div *ngIf="adresse.errors.required">L'adresse doit être renseigné</div>
+                <div *ngIf="adresse.errors.pattern">Ceci ne semble pas etre une adresse</div>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <label>Adresse</label>
-            <input type="text" name="adresse" id="adresse" required/>
+        <div class="form-group">
+            <label for="cp">Code postal</label>
+            <input required ngModel name="cp" #cp="ngModel" pattern="^[0-9]{5}$" id="cp" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="cp.touched && !cp.valid">
+                <div *ngIf="cp.errors.required">Le code postal doit être renseigné</div>
+                <div *ngIf="cp.errors.pattern">Ceci ne semble pas etre un code postal</div>
+            </div>
         </div>
-        <div class="input-field col s6">
-            <label>Code Postal</label>
-            <input type="number" name="cp" id="cp" required/>
+        <div class="form-group">
+            <label for="ville">Ville</label>
+            <input required ngModel name="ville" #ville="ngModel" pattern="[a-zA-Z ]*" id="ville" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="ville.touched && !ville.valid">
+                <div *ngIf="ville.errors.required">La ville doit être renseigné</div>
+                <div *ngIf="ville.errors.pattern">Ceci ne semble pas etre une ville</div>
+            </div>
         </div>
-        <div class="input-field col s6">
-            <label>Ville</label>
-            <input type="text" name="ville" id="ville" required/>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input required ngModel name="email" #email="ngModel" pattern="^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$" id="email" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                <div *ngIf="email.errors.required">L'email doit être renseigné</div>
+                <div *ngIf="email.errors.pattern">Ceci ne semble pas etre un email</div>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <label>Telephone</label>
-            <input type="tel" name="tel" id="tel" required/>
+        <div class="form-group">
+            <label for="tel">Telephone</label>
+            <input required ngModel name="tel" #tel="ngModel" pattern="^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$" id="tel" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="tel.touched && !tel.valid">
+                <div *ngIf="tel.errors.required">Le numéro telephone doit être renseigné</div>
+                <div *ngIf="tel.errors.pattern">Ceci ne semble pas etre un numero de telephone</div>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <label>Email</label>
-            <input type="email" name="email" id="email" required/>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input required ngModel name="login" #login="ngModel" pattern="^[a-zA-Z0-9_]{3,16}$" id="login" type="text" class="form-control">
+            <div class="alert alert-danger" *ngIf="login.touched && !login.valid">
+                <div *ngIf="login.errors.required">Le login doit être renseigné</div>
+                <div *ngIf="login.errors.pattern">Le login doit faire un minimum de 3 caractères et un maximum de 16</div>
+            </div>
         </div>
-        
-        <div class="input-field col s12">
-            <label>Login</label>
-            <input type="text" name="login" id="login" required/>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input required ngModel name="password" #password="ngModel" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" id="password" type="password" class="form-control">
+            <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                <div *ngIf="password.errors.required">Le password doit être renseigné</div>
+                <div *ngIf="password.errors.pattern">Minimum 8 caractères, une masjuscules, une minuscule, un chiffre et un caractère speciale</div>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <label>Mot de passe</label>
-            <input type="password" name="mdp" id="mdp" required/>
-        </div>
-        <div class="input_field col s6">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Valider</button>
-        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
     </form>
 </div>
